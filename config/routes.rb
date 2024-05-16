@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   # 管理者用
   namespace :admin do
-    get '/admin' => 'homes#top', as: 'admin'
+    root to: 'homes#top'
 
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
 
