@@ -61,6 +61,6 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # end
   
   def after_sign_up_path_for(resource) #会員のサインアップ後の遷移先
-    my_page_path
+    my_page_path(current_customer.id)
   end
 end
