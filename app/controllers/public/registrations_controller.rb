@@ -37,12 +37,15 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
+  def after_sign_in_path_for(resource) #会員のサインアップ後の遷移先
+    my_page_path(current_customer.id)
+  end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :first_name_kana, :last_name_kana, :post_code, :address, :telephone_number])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :last_name_kana, :first_name_kana, :post_code, :address, :telephone_number])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -60,7 +63,4 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-  def after_sign_up_path_for(resource) #会員のサインアップ後の遷移先
-    my_page_path(current_customer.id)
-  end
 end

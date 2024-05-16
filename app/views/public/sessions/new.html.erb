@@ -1,26 +1,26 @@
 <div class='container'>
   <div class='row d-flex justify-content-center'>
     <div class='col-5 pt-5'>
-      <span class='fs-6 bg-secondary text-black'>ログイン</span>
+      <span class='fs-8 bg-secondary text-black'>ログイン</span>
     </div>
   </div>
   <div class='row d-flex justify-content-center'>
     <div class='col-5 pt-5'>
-      <span class='fs-6 bg-secondary text-black'>会員の方はこちらからログイン</span>
+      <span class='fs-8 bg-secondary text-black'>会員の方はこちらからログイン</span>
     </div>
   </div>
 </div>
 
 <!--↓ form_for(resource, as: resource_name, url: session_path(resource_name)) から変更-->
-<%= form_with model: @user, url: customer_session_path do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<%= form_with model: @customer, url: customer_session_path do |f| %>
+  <div class="row form-group ">
+    <label class='col-3'>メールアドレス</label>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control col-8' %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    
+  <div class="row form-group ">
+    <label class='col-3'>パスワード</label>
+    <%= f.password_field :password, autocomplete: "current-password",  class: 'form-control col-8' %>
   </div>
 
   <% if devise_mapping.rememberable? %>
@@ -29,10 +29,19 @@
       <%= f.label :remember_me %>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  
+  <div class="form-group">
+    <label class='col-3'></label>
+    <%= f.submit "ログイン", class: 'btn btn-success col-3' %>
   </div>
 <% end %>
 
-<%= render "public/shared/links" %><!--publicsから単数形に変更済-->
+<div class='container mb-5'>
+  <div class='row'>
+    <div class='pt-5'>
+      <span class='fs-8 bg-secondary text-black'>会員登録がお済みでない方</span></br>
+      <%= render "public/shared/links" %><!--publicsから単数形に変更済-->
+      から新規登録を行なってください。
+    </div>
+  </div>
+</div>
