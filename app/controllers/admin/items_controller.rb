@@ -7,8 +7,10 @@ class Admin::ItemsController < ApplicationController
   def new
     @item = Item.new
 
+    
   end
-
+  
+>>>>>>> origin/develop
   def create
     item = Item.new(item_params)
     item.save
@@ -17,14 +19,12 @@ class Admin::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-
   end
 
   def edit
   end
-
+  
   private
-
   def item_params
     params.require(:item).permit(:name, :introduction, :price, :image)
   end
