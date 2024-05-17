@@ -11,7 +11,7 @@ class Public::CustomersController < ApplicationController
   
   def update
     customer = Customer.find(params[:id])
-    if customer.update(params_customer)
+    if customer.update(customer_params)
       redirect_to my_page_path, notice: '変更内容を保存しました。'
     else
       render :edit
@@ -28,7 +28,7 @@ class Public::CustomersController < ApplicationController
   
   private
   
-  def params_customer
+  def customer_params
     params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :post_code, :address, :telephone_number, :email)
   end
   
