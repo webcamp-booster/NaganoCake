@@ -5,14 +5,25 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
+
     <script src="https://kit.fontawesome.com/945e2890b0.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <p class='text-success'><%= flash[:notice] %></p><!--後ほどヘッダー部分テンプレート内に移動予定-->
+    <!-- ヘッダー -->
+    <div>
+      <%= render "layouts/header" %>
+    </div>
+
+    <!-- Body部分 -->
+    <p class='text-success'><%= flash[:notice] %></p>
     <%= yield %>
+
+    <!-- Footer -->
+    <%= render "layouts/footer" %>
   </body>
 </html>
+
+
