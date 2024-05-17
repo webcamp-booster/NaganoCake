@@ -4,12 +4,16 @@ class Public::CartItemsController < ApplicationController
   def index
     @cart_items = current_user.CartItem.all
   end
-  
+
   def destroy
     @cart_item = CartItem.find(params[:id])
-  end 
-  
+  end
+
   def destroy_all
   end
-  
+
+  def subtotal
+    item.with_tax_price * amount
+  end
+
 end
