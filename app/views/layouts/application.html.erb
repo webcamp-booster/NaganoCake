@@ -11,50 +11,19 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-    <% if customer_signed_in? %>
-    <body>
+  <body>
     <!-- ヘッダー -->
     <div>
       <%= render "layouts/header" %>
     </div>
 
     <!-- Body部分 -->
-    <div>
-      <%= yield %>
-    </div>
+    <p class='text-success'><%= flash[:notice] %></p>
+    <%= yield %>
 
     <!-- Footer -->
     <%= render "layouts/footer" %>
-    </body>
-  <% elsif admin_signed_in? %>
-    <body>
-    <!-- ヘッダー -->
-    <div>
-      <%= render "layouts/header" %>
-    </div>
-
-    <!-- Body部分 -->
-    <div>
-      <%= yield %>
-    </div>
-
-    <!-- Footer -->
-    <%= render "layouts/footer" %>
-    </body>
-  <% else %>
-    <body>
-    <!-- ヘッダー -->
-    <div>
-      <%= render "layouts/header" %>
-    </div>
-
-    <!-- Body部分 -->
-    <div>
-      <%= yield %>
-    </div>
-
-    <!-- Footer -->
-    <%= render "layouts/footer" %>
-    </body>
-  <% end %>
+  </body>
 </html>
+
+
