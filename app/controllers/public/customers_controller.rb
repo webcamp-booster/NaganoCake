@@ -11,7 +11,11 @@ class Public::CustomersController < ApplicationController
   
   def update
     customer = Customer.find(params[:id])
-    customer.update(params_customer)
+    if customer.update(params_customer)
+      redirect_to my_page_path, notice: '変更内容を保存しました。'
+    else
+      render :edit
+    end
   end
 
   def unsubscribe
