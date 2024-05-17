@@ -7,11 +7,10 @@
     <%= csp_meta_tag %>
 
     <script src="https://kit.fontawesome.com/945e2890b0.js" crossorigin="anonymous"></script>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-    <% if customer_signed_in? %>
     <body>
     <!-- ヘッダー -->
     <div>
@@ -26,35 +25,4 @@
     <!-- Footer -->
     <%= render "layouts/footer" %>
     </body>
-  <% elsif admin_signed_in? %>
-    <body>
-    <!-- ヘッダー -->
-    <div>
-      <%= render "layouts/header" %>
-    </div>
-
-    <!-- Body部分 -->
-    <div>
-      <%= yield %>
-    </div>
-
-    <!-- Footer -->
-    <%= render "layouts/footer" %>
-    </body>
-  <% else %>
-    <body>
-    <!-- ヘッダー -->
-    <div>
-      <%= render "layouts/header" %>
-    </div>
-
-    <!-- Body部分 -->
-    <div>
-      <%= yield %>
-    </div>
-
-    <!-- Footer -->
-    <%= render "layouts/footer" %>
-    </body>
-  <% end %>
 </html>
