@@ -6,12 +6,11 @@ class Public::CustomersController < ApplicationController
   end
 
   def edit
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
   end
   
   def update
-    customer = Customer.find(params[:id])
-    if customer.update(customer_params)
+    if current_customer.update(customer_params)
       redirect_to my_page_path, notice: '変更内容を保存しました。'
     else
       render :edit
