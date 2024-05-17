@@ -2,15 +2,15 @@ class Public::OrdersController < ApplicationController
   # before_action :authenticate_customer! 後ほど有効にしてください。
   def new
     @order = Order.new
-    @addresses = current_user.addresses.all
+    @addresses = current_customer.addresses.all
   end
 
   def confirm #注文情報入力確認画面
     @order = Order.new(order_params)
     if params[:order][:address_option] == "0"
-      @order.post_code = current_user.post_code
-      @order.address = current_user.address
-      @order.name = current_user.last_name + current_user.first_name
+      @order.post_code = current_customer.post_code
+      @order.address = current_customer.address
+      @order.name = current_customer.last_name + current_customer.first_name
     elsif params[:order][:address_option] == "1"
       @order.post_code = address.post_code
       @order.address = address.address
