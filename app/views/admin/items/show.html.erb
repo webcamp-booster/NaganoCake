@@ -1,9 +1,41 @@
-<h1>商品詳細</h1>
+<h4 class="row m-5 ">
+  <span class="bg-light bg-primary px-4">商品詳細</span>
+</h4>
 
-<p>商品名</p><%= @item.name %>
-<p>商品説明</p><%= @item.introduction%>
-<p>ジャンル</p>
-<p>税込価格<br>(税抜価格)</p><%= @item.price %>
+<div class="container">
+<div class="row d-flex">
+  <label class="col-2">商品名</label>
+  <div class="col-5" >
+    <%= @item.name %>
+  </div>
+</div>
+<div class="row d-flex">
+  <label class="col-2">商品説明</label>
+  <div class="col-5" >
+    <%= @item.introduction %>
+  </div>
+</div>
+<div class="row d-flex">
+  <label class="col-2">ジャンル</label>
+  <div class="col-5" >
+    <%= @item.genre.name %>
+  </div>
+</div>
+<div class="row d-flex">
+  <label class="col-2">税込価格<br>(税抜価格)</label>
+  <div class="col-5" >
+    <%= number_with_delimiter(@item.price*1.1) %><br>
+    <%= number_with_delimiter(@item.price) %>
+  </div>
+</div>
 
-<p>販売ステータス</p>
-
+<div class="row d-flex">
+  <label class="col-2">販売ステータス</label>
+  <div class="col-5" >
+    <% if @item.is_active %>
+      <span class="text-success font-weight-bold">販売中</span>
+    <% else %>
+      <span class="text-secondary font-weight-bold"> 販売停止中</span>
+    <% end %>
+  </div>
+</div>
