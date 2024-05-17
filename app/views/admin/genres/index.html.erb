@@ -2,6 +2,7 @@
   <span class="bg-light bg-primary px-4">ジャンル<strong>一覧・追加</strong></span>
 </h4>
 
+<!--ジャンル投稿-->
 <div class ="row m-4">
   <%= form_with model: [:admin, @genre], class: 'form-group' do |f| %>
     <div class="col-12">
@@ -13,6 +14,8 @@
     </div>
   <% end %>
 </div>
+
+<!--ジャンル一覧-->
 <div class="row ml-3">
   <div class="col-3">
     <table class="table border-bottom ">

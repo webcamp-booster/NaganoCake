@@ -1,11 +1,12 @@
 class Admin::ItemsController < ApplicationController
   # before_action :authenticate_admin!　後ほど有効にしてください。
   def index
-    @items = Item.all
+    @items = Item.all.page(params[:page]).per(10)
   end
 
   def new
     @item = Item.new
+
     
   end
   
@@ -17,16 +18,14 @@ class Admin::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    
   end
 
   def edit
   end
   
   private
-  
   def item_params
-    params.require(:item).permit(:name, :introduction, :price, :image)
+    params.require(:item).permit(:name, :introduction, :price, :image, :genre_id, :is_active)
   end
   
 end
