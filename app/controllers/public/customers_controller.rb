@@ -2,7 +2,7 @@ class Public::CustomersController < ApplicationController
   # before_action :authenticate_customer! 後ほど有効にしてください。
   # before_action :ensure_current_customer! 
   def show
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
   end
 
   def edit
