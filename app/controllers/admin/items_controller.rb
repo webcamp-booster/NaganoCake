@@ -10,7 +10,6 @@ class Admin::ItemsController < ApplicationController
     
   end
   
->>>>>>> origin/develop
   def create
     item = Item.new(item_params)
     item.save
