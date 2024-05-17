@@ -18,14 +18,14 @@ class Public::CustomersController < ApplicationController
   end
   
   def withdraw
-    current_customer.update(is_active: false
+    current_customer.update(is_active: false)
     redirect_to new_customer_session_path
   end
   
   private
   
-  def params_customer #developマージしたらkaneからkanaへなおす
-    params.require(:customer).permit(:last_name, :first_name, :last_name_kane, :post_code, :address, :telephone_number, :email)
+  def params_customer
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :post_code, :address, :telephone_number, :email)
   end
   
   def ensure_current_customer
