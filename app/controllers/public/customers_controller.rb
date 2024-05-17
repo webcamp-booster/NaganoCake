@@ -37,4 +37,5 @@ class Public::CustomersController < ApplicationController
     unless current_customer.id == customer.id
       redirect_to my_page_path(current_customer.id)
     end
+  end
 end
