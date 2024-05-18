@@ -15,13 +15,13 @@
         </tr>
       </thead>
       <tbody>
-        <%= @customers.each do |customer| %>
+        <% @customers.each do |customer| %>
           <tr>
             <td><%= customer.id %></td>
             <td colspan='2'><%= customer.last_name %><%= customer.first_name %></td>
             <td colspan='2'><%= customer.email %></td>
             <td colspan='2'>
-              <%= if customer.is_active == true %>
+              <% if customer.is_active == true %>
                 <strong class='text-success'>有効</strong>
               <% else %>
                 <strong class='text-secondary'>退会</strong>
