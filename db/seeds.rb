@@ -26,13 +26,11 @@ end
    is_active: true
 )
 
-Customer.all.each do |customer|
-  customer.addresses.create!(
+Customer.find_by(email: 'test@test.com').addresses.create!(
     name: 'テスト花子',
     post_code: '1234567',
     address: 'a県b市'
   )
-end
 
 # 退会済の顧客データ
 Customer.create!(
@@ -45,5 +43,9 @@ Customer.create!(
    post_code: '2222222',
    address: 's県s市',
    telephone_number: '0120222222',
-   is_active: false
+   is_active: true
 )
+
+Customer.find_by(email: 'test2@test.com').update(is_active: false)
+
+
