@@ -1,4 +1,4 @@
-<div class='container'>
+<div class='container my-5'>
   <div class='row'>
     <div class='col-10'>
       <span class='fs-8 bg-secondary text-black'>会員一覧</span>
@@ -18,7 +18,11 @@
         <% @customers.each do |customer| %>
           <tr>
             <td><%= customer.id %></td>
-            <td colspan='2'><%= customer.last_name %><%= customer.first_name %></td>
+            <td colspan='2'>
+              <%= link_to admin_customer_path(customer.id) do %>
+                <%= customer.last_name %><%= customer.first_name %>
+              <% end %>
+            </td>
             <td colspan='2'><%= customer.email %></td>
             <td colspan='2'>
               <% if customer.is_active == true %>
