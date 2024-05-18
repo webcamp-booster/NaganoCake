@@ -33,3 +33,8 @@ Customer.all.each do |customer|
     address: 'a県b市'
   )
 end
+
+Genre.create!(
+  name: 'ケーキ'
+  )
+
