@@ -4,6 +4,8 @@
     <span class='heading-title'><%= @customer.last_name + @customer.first_name %>の会員詳細</span>
   </h4>
   
+  <%= render 'layouts/errors', obj: @customer 
+  
   <%= form_with model: [:admin, @customer], class: 'ml-5' do |f| %>
   
     <div class='row form-group'>
