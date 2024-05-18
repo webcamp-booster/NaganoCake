@@ -3,6 +3,8 @@
   <h4 class="row mb-5">
     <span class="heading-title">商品新規登録</span>
   </h4>
+  <%= render "layouts/errors", obj: @item %>
+  
   <div class="container">
   
     <%= form_with model: [:admin, @item] do |f| %>

@@ -1,42 +1,54 @@
 <div class="container my-5">
+  
+  
   <h4 class="row mb-5">
     <span class="heading-title">商品詳細</span>
   </h4>
-
-  <div class="container mb-5">
-  <div class="row d-flex">
-    <label class="col-2">商品名</label>
-    <div class="col-5" >
-      <%= @item.name %>
-    </div>
-  </div>
-  <div class="row d-flex">
-    <label class="col-2">商品説明</label>
-    <div class="col-5" >
-      <%= @item.introduction %>
-    </div>
-  </div>
-  <div class="row d-flex">
-    <label class="col-2">ジャンル</label>
-    <div class="col-5" >
-      <%= @item.genre.name %>
-    </div>
-  </div>
   <div class="row d-flex align-items-center">
-    <label class="col-2 ">税込価格<br>(税抜価格)</label>
-    <div class="col-5 " >
-      <%= @item.add_tax_price.to_s(:delimited) %>（<%= number_with_delimiter(@item.price) %>）円
-    </div>
-  </div>
+    <%= image_tag @item.get_image(300,150) %>
   
-  <div class="row d-flex">
-    <label class="col-2">販売ステータス</label>
-    <div class="col-5" >
-      <% if @item.is_active %>
-        <span class="text-success font-weight-bold">販売中</span>
-      <% else %>
-        <span class="text-secondary font-weight-bold"> 販売停止中</span>
-      <% end %>
+  
+  <div class="col-7 mb-5 ml-5">
+    <div class="row d-flex">
+      <label class="col-4">商品名</label>
+      <div class="col-8" >
+        <%= @item.name %>
+      </div>
+    </div>
+    <div class="row d-flex">
+      <label class="col-4">商品説明</label>
+      <div class="col-8" >
+        <%= @item.introduction %>
+      </div>
+    </div>
+    <div class="row d-flex">
+      <label class="col-4">ジャンル</label>
+      <div class="col-8" >
+        <%= @item.genre.name %>
+      </div>
+    </div>
+    <div class="row d-flex align-items-center">
+      <label class="col-4 ">税込価格<br>(税抜価格)</label>
+      <div class="col-8 " >
+        <%= @item.add_tax_price.to_s(:delimited) %>（<%= number_with_delimiter(@item.price) %>）円
+      </div>
+    </div>
+    
+    <div class="row d-flex">
+      <label class="col-4">販売ステータス</label>
+      <div class="col-8" >
+        <% if @item.is_active %>
+          <span class="text-success font-weight-bold">販売中</span>
+        <% else %>
+          <span class="text-secondary font-weight-bold"> 販売停止中</span>
+        <% end %>
+      </div>
+    </div>
     </div>
   </div>
+  <div class="row d-flex justify-content-center">
+   <div class="col-8" >
+      <%= link_to "編集する", edit_admin_item_path, class: "btn btn-success font-weight-bold px-5 py-2 " %>
+  </div>
+</div>
 </div>
