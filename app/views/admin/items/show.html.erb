@@ -24,7 +24,7 @@
 <div class="row d-flex">
   <label class="col-2">税込価格<br>(税抜価格)</label>
   <div class="col-5" >
-    <%= number_with_delimiter(@item.price*1.1) %><br>
+    <%= @item.add_tax_price.to_s(:delimited) %><br>
     <%= number_with_delimiter(@item.price) %>
   </div>
 </div>
