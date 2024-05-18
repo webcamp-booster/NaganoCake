@@ -33,3 +33,17 @@ Customer.all.each do |customer|
     address: 'a県b市'
   )
 end
+
+# 退会済の顧客データ
+Customer.create!(
+   email: 'test2@test.com',
+   last_name: 'テスト2',
+   first_name: '小太郎',
+   last_name_kana: 'テスト2',
+   first_name_kana: 'コタロウ',
+   password: 'example2',
+   post_code: '2222222',
+   address: 's県s市',
+   telephone_number: '0120222222',
+   is_active: false
+)
