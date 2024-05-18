@@ -42,7 +42,7 @@ class Public::SessionsController < Devise::SessionsController
     return if customer.nil?
     return unless customer.valid_password?(params[:customer][:password])
     unless customer.is_active == true
-      redirect_to new_customer_registration_path, notice: '退会済みのため、再新規度登録が必要です。'
+      redirect_to new_customer_registration_path, notice: '退会済みのため、再度新規登録が必要です。'
     end
   end
 end
