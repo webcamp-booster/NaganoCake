@@ -3,7 +3,9 @@
     <h2>商品一覧</h2>
     <h5>（全<%= @items.count %>件）</h5>
   </div>
-  <div>
-    <%= image_tag  %>
-  </div>
+  <% @items.each do |item| %>
+    <%= image_tag item.get_image(300, 200) %>
+    <%= item.name %>
+    <%= item.price %>
+  <% end %>
 </div>
