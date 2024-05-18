@@ -18,8 +18,6 @@ class Public::CartItemsController < ApplicationController
     render 'index'
   end
 
-  def subtotal
-    item.with_tax_price * amount
-  end
+  
 
 end
