@@ -6,10 +6,16 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
-    @cart_item = CartItem.find(params[:id])
+    cart_item = CartItem.find(params[:id])
+    cart_item.destroy
+    @cartitems = CartItem.all
+    render 'index'
   end
 
   def destroy_all
+    cart_items = CartItem.all
+    cart_items.destroy_all
+    render 'index'
   end
 
   def subtotal
