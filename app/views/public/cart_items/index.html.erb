@@ -1,9 +1,10 @@
+<div class="container">
+  <div class="row">
 <h4>ショッピングカート</h4>
 <!-- カートを空にするボタン -->
-<%= link_to "カートを空にする",all_destroy_cart_items_path, method: :delete, class:"btn btn-sm btn-danger" %>
+<%= link_to "カートを空にする",destroy_all_path, method: :delete, class:"btn btn-sm btn-danger" %>
 
-<table>
-  <thead>
+<table class="table">
     <tr>
       <th>商品名</th>
       <th>単価(税込)</th>
@@ -11,9 +12,10 @@
       <th>小計</th>
       <th colspan="1"></th>
     </tr>
-  </thead>
+  <% total = 0 %>
 
-  <tbody>
+  <% if current_customer.cart_items.present? %>
+
     <% @cart_items.each do |cart_item| %>
       <tr>
         <td>
@@ -21,13 +23,14 @@
           <%= cart_item.item.name %>
         </td>
         <td>
-          <%= (cart_item.item.with_tax_price %>
+          <%= (cart_item.item.with_tax_price) %>
         </td>
         <td>
           <!--数量のプルダウン-->
           <%= form_with model: cart_item, url: cart_item_path(cart_item), local: true, method:patch do |f| %>
             <%= f.number_field :amount, min: 1, max:10, id: "amount_cart" %>
             <%= f.submit "変更",class: "btn-sm btn-success" %>
+          <% end %>
         </td>
         <td>
           <%= cart_item.subtotal %>
@@ -37,7 +40,14 @@
           <%= link_to "削除", cart_item_path(cart_item.id,cart_item),method: :delete,class:"btn-sm btn-danger" %>
         </td>
       </tr>
-  </tbody>
+          <% total += cart_item.subtotal %>
+      <% end %>
+  <% end %>
+    <tr>
+      <th>合計金額</th>
+      <td><%= total %></td>
+    </tr>
+
 </table>
 
 <!-- 買い物を続けるボタン -->
@@ -46,3 +56,5 @@
 
 <!-- 情報入力に進むボタン -->
 <%= link_to "情報入力に進む",new_order_path, class:"btn-sm btn-success" %>
+</div>
+</div>

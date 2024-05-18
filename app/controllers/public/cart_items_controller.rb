@@ -2,7 +2,7 @@ class Public::CartItemsController < ApplicationController
   # before_action :authenticate_customer! 後ほど有効にしてください。
   #before_action :is_matching_login_user
   def index
-    @cart_items = current_user.CartItem.all
+    @cart_items = current_customer.cart_items
   end
 
   def destroy
