@@ -15,9 +15,12 @@ class Item < ApplicationRecord
   def add_tax_price
     (self.price * 1.1).floor
   end
-  
 # 商品画像の記述
   def get_image(width, height)
-    image.variant(resize: "#{width}x#{height}!").processed
+    unless image.attached?
+      file_path = Rails.root.join('app/assets/images/default-image.jpg')
+      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    image.variant(resize_to_limit: [width, height]).processed
   end
 end

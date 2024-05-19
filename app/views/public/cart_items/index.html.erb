@@ -17,7 +17,6 @@
       </tr>
       </thead>
 
-
       <% total = 0 %>
       <% if current_customer.cart_items.present? %>
       <tbody>
@@ -28,7 +27,7 @@
             <%= cart_item.item.name %>
           </td>
           <td>
-            <%= cart_item.item.add_tax_price %>
+            <%= cart_item.item.add_tax_price.to_s(:delimited) %>
           </td>
           <td>
           <!--数量のプルダウン-->
@@ -38,7 +37,7 @@
             <% end %>
           </td>
           <td>
-            <%= cart_item.subtotal %>
+            <%= cart_item.subtotal.to_s(:delimited) %>
           </td>
           <td>
             <div class = "button">
@@ -52,10 +51,7 @@
     <% end %>
     </table>
 
-
-
   </div>
-
 
   <div class = "row d-flex">
     <div class = "button col-2">
@@ -65,11 +61,10 @@
     <table class = "table table-bordered  col-4 ml-auto">
       <tr>
         <th>合計金額</th>
-        <td><%= total %></td>
+        <td><%= total.to_s(:delimited) %></td>
       </tr>
     </table>
   </div>
-
 
   <div class = "row">
     <div class = "button mx-auto">
