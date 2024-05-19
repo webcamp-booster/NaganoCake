@@ -7,10 +7,14 @@
     <% @items.each do |item| %>
       <div class="col-3 mx-3 my-4">
         <div class="mb-3">
-          <%= image_tag item.get_image(300, 200) %>
+          <%= link_to item_path(item) do %>
+            <%= image_tag item.get_image(300, 200) %>
+          <% end %>
         </div>
         <div class="mb-3">
-          <strong><%= item.name %></strong>
+          <%= link_to item_path(item) do %>
+            <strong><%= item.name %></strong>
+          <% end %>
         </div>
         <div>
           <strong><%= number_to_currency(item.price, format: "%u%n", unit: "￥" ) %></strong>

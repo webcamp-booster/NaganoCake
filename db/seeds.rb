@@ -37,4 +37,15 @@ end
 Genre.create!(
   name: 'ケーキ'
   )
+  
+  
+item = Item.new(
+  name: 'いちごのショートケーキ',
+  introduction: 'とっても甘いショートケーキです。',
+  price: '3000',
+  genre_id: Genre.find_by(name: 'ケーキ').id,
+  is_active: 'false')
+item.image.attach('./app/assets/images/default-image.jpg')
+item.save!
 
+  
