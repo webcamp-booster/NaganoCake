@@ -14,7 +14,6 @@ before_action :authenticate_customer!
       @order.name = current_customer.last_name + current_customer.first_name
 
     elsif params[:order][:address_option] == "1"
-      Address.find(params[:order][:address_id])
       selected = Address.find(params[:order][:address_id])
       @order.post_code = selected.post_code
       @order.address = selected.address
