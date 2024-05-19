@@ -15,6 +15,7 @@ class Item < ApplicationRecord
   def add_tax_price
     (self.price * 1.1).floor
   end
+  
 # 商品画像の記述
   def get_image(width, height)
     unless image.attached?

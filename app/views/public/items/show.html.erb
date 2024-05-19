@@ -11,7 +11,7 @@
         <%= @item.introduction %>
       </h5>
       <div class="row d-flex">
-        <strong><h4><%= number_to_currency(@item.price, format: "%u%n", unit: "￥") %></h4></strong><p>（税込）</p>
+        <strong><h4><%= number_to_currency(@item.add_tax_price, format: "%u%n", unit: "￥") %></h4></strong><p>（税込）</p>
       </div> 
       <div>
       <!--商品ステータスがtrue(販売中)の場合-->
