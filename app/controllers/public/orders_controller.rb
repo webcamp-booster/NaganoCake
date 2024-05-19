@@ -1,6 +1,6 @@
 class Public::OrdersController < ApplicationController
-  # before_action :authenticate_customer! 後ほど有効にしてください。
-  def new
+　before_action :authenticate_customer!
+  def new #注文情報入力画面
     @order = Order.new
     @addresses = current_customer.addresses.all
   end
