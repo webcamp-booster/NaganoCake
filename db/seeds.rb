@@ -48,7 +48,7 @@ Item.create!(
 # item.save!
 
 
-# 退会済の顧客データ
+# 顧客データ
 Customer.create!(
   email: 'test2@test.com',
   last_name: 'テスト2',
@@ -59,6 +59,6 @@ Customer.create!(
   post_code: '2222222',
   address: 's県s市',
   telephone_number: '0120222222',
-  is_active: false
+  is_active: true
 )
 
