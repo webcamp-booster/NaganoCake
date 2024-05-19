@@ -13,11 +13,10 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
-    cart_items = CartItem.all
-    cart_items.destroy_all
+    current_customer.cart_items.destroy_all
     render 'index'
   end
 
-  
+
 
 end
