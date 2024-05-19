@@ -47,5 +47,5 @@ Customer.create!(
    post_code: '2222222',
    address: 's県s市',
    telephone_number: '0120222222',
-   is_active: true
+   is_active: false
 )
