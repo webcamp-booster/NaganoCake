@@ -1,28 +1,31 @@
-<div class='container'>
-  <div class='row d-flex justify-content-center'>
-    <div class='col-5 pt-5'>
-      <span class='fs-8 bg-secondary text-black'>管理者ログイン</span>
-    </div>
-  </div>
-</div>
-<div class='container mt-5'>
+<div class='container my-5'>
+  
+  <h4 class='row mb-5'>
+    <span class='heading-title'>管理者ログイン</span>
+  </h4>
+  
   <!--↓ form_for(resource, as: resource_name, url: session_path(resource_name))　から変更 -->
   <%= form_with model: @admin, url: admin_session_path do |f| %>
     <div class="row form-group">
       <label class='col-2 ml-auto'>メールアドレス</label>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control col-6 mr-auto' %>
     </div>
+    
     <div class="row form-group">
       <label class='col-2 ml-auto'>パスワード</label>
       <%= f.password_field :password, autocomplete: "current-password", class: 'form-control col-6 mr-auto' %>
     </div>
+    
     <div class="row form-group">
       <label class='col-2 ml-auto'></label>
       <%= f.submit "ログイン", class: 'btn btn-primary col-5 mr-auto' %>
     </div>
   <% end %>
+  
   <%= render "admin/shared/links" %><!--admins単数形に変更済-->
+  
 </div>
+
 
 
 

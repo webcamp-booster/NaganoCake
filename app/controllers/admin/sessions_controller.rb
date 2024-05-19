@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::SessionsController < Devise::SessionsController
+  # before_action :authenticate_customer! 後ほど有効にする。
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
