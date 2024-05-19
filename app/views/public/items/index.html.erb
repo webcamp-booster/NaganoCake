@@ -1,11 +1,25 @@
 <div class="container">
   <div class="row text-align-bottom">
-    <h2>商品一覧</h2>
+    <h2><strong>商品一覧</strong></h2>
     <h5>（全<%= @items.count %>件）</h5>
   </div>
-  <% @items.each do |item| %>
-    <%= image_tag item.get_image(300, 200) %>
-    <%= item.name %>
-    <%= item.price %>
-  <% end %>
+  <div class="row">
+    <% @items.each do |item| %>
+      <div class="col-3 mx-3 my-4">
+        <div class="mb-3">
+          <%= image_tag item.get_image(300, 200) %>
+        </div>
+        <div class="mb-3">
+          <strong><%= item.name %></strong>
+        </div>
+        <div>
+          <strong><%= number_to_currency(item.price, format: "%u%n", unit: "￥" ) %></strong>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <!--ページネーション-->
+  <div class="row justify-content-center">
+    <%= paginate @items %>
+  </div>
 </div>
