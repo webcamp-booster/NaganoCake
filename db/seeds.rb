@@ -32,6 +32,10 @@ Customer.find_by(email: 'test@test.com').addresses.create!(
     address: 'a県b市'
   )
 
+Genre.create!(
+  name: 'ケーキ'
+  )
+
 # 退会済の顧客データ
 Customer.create!(
    email: 'test2@test.com',
@@ -45,6 +49,3 @@ Customer.create!(
    telephone_number: '0120222222',
    is_active: true
 )
-
-
-
