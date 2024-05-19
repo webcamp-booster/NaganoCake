@@ -9,11 +9,11 @@
       <thead>
         <tr class='table-secondary'>
           <th class='col-2'>注文日</th>
-          <th class='col-4'>配送先</th>
+          <th class='col-3'>配送先</th>
           <th class='col-2'>注文商品</th>
           <th class='col-1'>支払金額</th>
           <th class='col-2'>ステータス</th>
-          <th class='col-1'>注文詳細</th>
+          <th class='col-2'>注文詳細</th>
         </tr>
       </thead>
       <% if @orders.present? %>
@@ -23,7 +23,7 @@
               <td><%= order.created_at.strftime('%y/%m/%d') %></td>
               <td>
                 〒<%= order.post_code %></br>
-                <%= order.address %></td>
+                <%= order.address %></br>
                 <%= order.name %>
               <td>
                 <% order.order_details.each do |order_detail| %>
@@ -32,7 +32,7 @@
               </td>
               <td><%= order.total_payment.to_s(:delimited) %>円</td>
               <td><%= order.get_status %></td>
-              <td><%= link_to '表示する', order_path(order.id), class: 'btn btn-primary mx-auto' %></td>
+              <td><%= link_to '表示する', order_path(order.id), class: 'btn btn-sm btn-primary mx-auto' %></td>
             </tr>
           <% end %>
         </tbody>

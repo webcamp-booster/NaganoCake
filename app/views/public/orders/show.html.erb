@@ -4,55 +4,59 @@
   </h4>
   
   <div class='row d-flex mb-5'>
-    <div class='mr-3'>
-      <label>注文情報</label></br>
-      <table class='table table-bordered'>
-        <tr>
-          <th class='col-2 table-secondary'>注文日</th>
-          <td class='col-5'><%= @order.created_at.strftime('%y/%m/%d') %></td>
-        </tr>
-        <tr>
-          <th class='table-secondary'>配送先</th>
-          <td>
-            〒<%= @order.post_code %></br>
-            <%= @order.address %></br>
-            <%= @order.name %>
-          </td>
-        </tr>
-        <tr>
-          <th class='table-secondary'>支払方法</th>
-          <td>
-            <% if @order.payment_method == 0 %>
-              <%= payment_methods_i18n[:credit_card] %>
-            <% else %>
-              <%= payment_methods_i18n[:transfer] %>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <th class='table-secondary'>ステータス</th>
-          <td>
-            <%= @order.get_status %>
-          </td>
-        </tr>
-      </table>
+    <div class='col-4 mb-5 mr-3'>
+      <div class='row'>
+        <label>注文情報</label></br>
+        <table class='table table-bordered'>
+          <tr>
+            <th class='col-3 table-secondary'>注文日</th>
+            <td class='col-4'><%= @order.created_at.strftime('%y/%m/%d') %></td>
+          </tr>
+          <tr>
+            <th class='table-secondary'>配送先</th>
+            <td>
+              〒<%= @order.post_code %></br>
+              <%= @order.address %></br>
+              <%= @order.name %>
+            </td>
+          </tr>
+          <tr>
+            <th class='table-secondary'>支払方法</th>
+            <td>
+              <% if @order.payment_method == 0 %>
+                <%= I18n.t("credit_card", scope: ["enums", "order", "payment_method"]) %>
+              <% else %>
+                <%= I18n.t("transfer", scope: ["enums", "order", "payment_method"]) %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th class='table-secondary'>ステータス</th>
+            <td>
+              <%= @order.get_status %>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <div>
-      <label>請求情報</label></br>
-      <table class='table table-bordered'>
-        <tr>
-          <th class='col-2 table-secondary'>商品合計</th>
-          <td class='col-2'><%= @order.get_items_total_price.to_s(:delimited) %></td>
-        </tr>
-        <tr>
-          <th class='table-secondary'>配送料</th>
-          <td><%= @order.shipping_cost.to_s(:delimited) %></td>
-        </tr>
-        <tr>
-          <th class='table-secondary'><strong>ご請求額</strong></th>
-          <td><%= @order.total_payment.to_s(:delimited) %></td>
-        </tr>
-      </table>
+    <div class='col-4'>
+      <div class='row'>
+        <label>請求情報</label></br>
+        <table class='table table-bordered'>
+          <tr>
+            <th class='col-4 table-secondary'>商品合計</th>
+            <td class='col-4'><%= @order.get_items_total_price.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <th class='table-secondary'>配送料</th>
+            <td><%= @order.shipping_cost.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <th class='table-secondary'><strong>ご請求額</strong></th>
+            <td><%= @order.total_payment.to_s(:delimited) %></td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
   

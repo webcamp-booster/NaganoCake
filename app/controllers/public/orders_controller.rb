@@ -48,11 +48,11 @@ class Public::OrdersController < ApplicationController
       @order_detail.order_id = @order.id
       @order_detail.price = cart_item.item.add_tax_price
       @order_detail.amount = cart_item.amount
-      @order_detai.save
+      @order_detail.save
     end
 
     current_customer.cart_items.destroy_all
-    redirect_to thanks_orders_path
+    redirect_to thanks_path
   end
 
 
@@ -70,7 +70,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:payment_method, :name, :address, :post_code, :shipping_cost, :total_price, :status)
+    params.require(:order).permit(:payment_method, :name, :address, :post_code, :shipping_cost, :total_payment, :status)
   end
 
 end
