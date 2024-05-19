@@ -15,16 +15,16 @@
           <strong><%= cart_item.item.name %></strong>
         </td>
         <td>
-          <%= cart_item.item.add_tax_price %>
+          <%= cart_item.item.add_tax_price.to_s(:delimited) %>
         </td>
         <td>
           <%= cart_item.amount %>
         </td>
         <td>
-          <%= cart_item.subtotal %>
+          <%= cart_item.subtotal.to_s(:delimited) %>
         </td>
       </tr>
-      <% @total = @total + cart_item.subtotal %>
+      <% @total = @total + cart_item.subtotal.to_i %>
       <% end %>
     </table>
 
@@ -40,14 +40,19 @@
       <tr>
         <th>請求金額</th>
         <% @order.total_payment = @order.shipping_cost.to_i + @total.to_i %>
-        <td><%= @order.total_payment %></td>
+        <td><%= @order.total_payment.to_s(:delimited) %></td>
       </tr>
     </table>
   </div>
-  <h4>支払方法</h4>
-  <%= @order.payment_method_i18n %>
-  <h4>お届け先</h4>
-  〒<%= @order.post_code %><%= @order.address %><%= @order.name %>
+  <div class="row d-flex">
+    <h4><strong>支払方法</strong></h4>
+    <P class="ml-3 fw-bold"><%= @order.payment_method_i18n %></P>
+  </div>
+  <div class="row d-flex">
+    <h4><strong>お届け先</strong></h4>
+    <p class="ml-3">〒<%= @order.post_code %> <%= @order.address %><br><%= @order.name %></p>
+ </div>
+
 
   <div class="row justify-content-center">
     <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>

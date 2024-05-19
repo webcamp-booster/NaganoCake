@@ -34,12 +34,12 @@ before_action :authenticate_customer!
     @order.shipping_cost = 800
 
   end
-  
+
   def create
     @order = Order.new(order_params)
-    @order.member_id = current_member.id
+    @order.customer_id = current_customer.id
     @order.save
-    
+
     #order_detailの保存
     current_customer.cart_items.each do |cart_item|
       @order_detail = OrderDetail.new
@@ -48,12 +48,12 @@ before_action :authenticate_customer!
       @order_detail.price = cart_item.item.add_tax_price
       @order_detail.amount = cart_item.amount
       @order_detai.save
-    end 
-    
+    end
+
     current_customer.cart_items.destroy_all
     redirect_to thanks_orders_path
   end
-    
+
 
   def thanks
   end
