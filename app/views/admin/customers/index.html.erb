@@ -4,7 +4,7 @@
     <span class='heading-title'>会員一覧</span>
   </h4>
   
-  <div class='row d-flex justify-content-center'>
+  <div class='row d-flex justify-content-center mb-5'>
     <table class='table'>
       <thead class='table-secondary'>
         <tr>
@@ -37,5 +37,7 @@
     </table>
   </div>
   
-  <%= paginate @customers %>
+  <div class="row justify-content-center">
+   <%= paginate @items, theme: 'bootstrap-5' %>
+  </div>
 </div>
