@@ -1,15 +1,15 @@
 <div class="container">
-  <div class="row text-align-bottom">
-    <h2><strong>商品一覧</strong></h2>
-    <h5>（全<%= @active_items_count %>件）</h5>
+  <div class="row text-align-bottom mt-5 mb-3">
+    <h2 class="item_title"><strong>商品一覧</strong></h2>
+    <h5 class="item_count">（全<%= @active_items_count %>件）</h5>
   </div>
   <div class="row">
     <% @items.each do |item| %>
       <% if item.is_active %>
-        <div class="col-3 mx-3 my-4">
+        <div class="col-3 mb-4">
           <div class="mb-3">
             <%= link_to item_path(item) do %>
-              <%= image_tag item.get_image(300, 200) %>
+              <%= image_tag item.get_image(200, 120) %>
             <% end %>
           </div>
           <div class="mb-3">
@@ -26,6 +26,6 @@
   </div>
   <!--ページネーション-->
   <div class="row justify-content-center">
-    <%= paginate @items %>
+    <%= paginate @items, theme: 'bootstrap-5' %>
   </div>
 </div>
