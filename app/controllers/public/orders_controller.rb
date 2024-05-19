@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-　before_action :authenticate_customer!
+  before_action :authenticate_customer!
   def new #注文情報入力画面
     @order = Order.new
     @addresses = current_customer.addresses.all
@@ -35,9 +35,11 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
   private
