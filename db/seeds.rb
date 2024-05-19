@@ -26,13 +26,11 @@ end
   is_active: true
 )
 
-Customer.all.each do |customer|
-  customer.addresses.create!(
+Customer.find_by(email: 'test@test.com').addresses.create!(
     name: 'テスト花子',
     post_code: '1234567',
     address: 'a県b市'
   )
-end
 
 Genre.create!(
   name: 'ケーキ'
@@ -49,4 +47,18 @@ Item.create!(
 # item.image.attach('/app/assets/images/default-image.jpg')
 # item.save!
 
-  
+
+# 退会済の顧客データ
+Customer.create!(
+   email: 'test2@test.com',
+   last_name: 'テスト2',
+   first_name: '小太郎',
+   last_name_kana: 'テスト2',
+   first_name_kana: 'コタロウ',
+   password: 'example2',
+   post_code: '2222222',
+   address: 's県s市',
+   telephone_number: '0120222222',
+   is_active: true
+)
+
