@@ -46,6 +46,5 @@ Customer.create!(
    is_active: true
 )
 
-Customer.find_by(email: 'test2@test.com').update(is_active: false)
 
 
