@@ -1,2 +1,31 @@
-<h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+<div class="container">
+  <div class="row text-align-bottom">
+    <h2><strong>商品一覧</strong></h2>
+    <h5>（全<%= @active_items_count %>件）</h5>
+  </div>
+  <div class="row">
+    <% @items.each do |item| %>
+      <% if item.is_active %>
+        <div class="col-3 mx-3 my-4">
+          <div class="mb-3">
+            <%= link_to item_path(item) do %>
+              <%= image_tag item.get_image(300, 200) %>
+            <% end %>
+          </div>
+          <div class="mb-3">
+            <%= link_to item_path(item) do %>
+              <strong><%= item.name %></strong>
+            <% end %>
+          </div>
+          <div>
+            <strong><%= number_to_currency(item.price, format: "%u%n", unit: "￥" ) %></strong>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!--ページネーション-->
+  <div class="row justify-content-center">
+    <%= paginate @items %>
+  </div>
+</div>
