@@ -1,5 +1,6 @@
 class Public::AddressesController < ApplicationController
-  # before_action :authenticate_customer! 後ほど有効にしてください。
+  before_action :authenticate_customer!
+  
   def index
     @address = Address.new
     @addresses = current_customer.addresses
@@ -14,8 +15,8 @@ class Public::AddressesController < ApplicationController
     if @address.save
       redirect_to addresses_path, notice: '新しい配送先を登録しました。'
     else
-      @address = Address.new
-      @addresses = current_customer.addresses
+      @addresses = Address.where(customer_id: current_customer.id)
+      flash.now[:alert] = '配送先の登録に失敗しました。'
       render :index
     end
   end
@@ -25,6 +26,7 @@ class Public::AddressesController < ApplicationController
     if @address.update(address_params)
       redirect_to addresses_path, notice: '配送先の情報を更新しました。'
     else
+      flash.now[:alert] = '配送先情報の更新に失敗しました。'
       render :edit
     end
   end

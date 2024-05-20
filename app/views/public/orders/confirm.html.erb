@@ -10,8 +10,8 @@
       </tr>
       <% @cart_items.each do |cart_item| %>
       <tr>
-        <td class="align-middle">
-          <%= image_tag cart_item.item.get_image(80,80) %>
+        <td>
+          <%= image_tag cart_item.item.get_image(300,200) %>
           <strong><%= cart_item.item.name %></strong>
         </td>
         <td  class="align-middle">

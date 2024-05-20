@@ -9,11 +9,12 @@ class Item < ApplicationRecord
   validates :image, presence: true
   validates :introduction, presence: true
   validates :price, presence: true
- 
+  
+  TAX_RATE = 1.1
 
 # 税込価格の表記
   def add_tax_price
-    (self.price * 1.1).floor
+    (self.price * TAX_RATE).floor
   end
 # 商品画像の記述
   def get_image(width, height)

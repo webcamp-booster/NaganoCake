@@ -1,5 +1,7 @@
 class Admin::CustomersController < ApplicationController
-  # before_action :authenticate_admin! 後ほど有効にしてください。
+
+  before_action :authenticate_admin!
+
   def index
     @customers = Customer.page(params[:page]).per(10)
   end
@@ -17,6 +19,7 @@ class Admin::CustomersController < ApplicationController
     if @customer.update(customer_params)
       redirect_to admin_customer_path(@customer.id), notice: '登録情報を更新しました。'
     else
+      flash.now[:alert] = '更新に失敗しました。'
       render :edit
     end
   end

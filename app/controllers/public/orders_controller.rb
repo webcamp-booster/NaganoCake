@@ -1,5 +1,7 @@
 class Public::OrdersController < ApplicationController
-before_action :authenticate_customer!
+
+  before_action :authenticate_customer!
+
   def new #注文情報入力画面
     @order = Order.new
     @addresses = current_customer.addresses.all
@@ -47,11 +49,11 @@ before_action :authenticate_customer!
       @order_detail.order_id = @order.id
       @order_detail.price = cart_item.item.add_tax_price
       @order_detail.amount = cart_item.amount
-      @order_detai.save
+      @order_detail.save
     end
 
     current_customer.cart_items.destroy_all
-    redirect_to thanks_orders_path
+    redirect_to thanks_path
   end
 
 
@@ -59,15 +61,17 @@ before_action :authenticate_customer!
   end
 
   def index
+    @orders = current_customer.orders
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
   private
 
   def order_params
-    params.require(:order).permit(:payment_method, :name, :address, :post_code, :shipping_cost, :total_price, :status)
+    params.require(:order).permit(:payment_method, :name, :address, :post_code, :shipping_cost, :total_payment, :status)
   end
 
 end
