@@ -14,6 +14,8 @@ class Public::AddressesController < ApplicationController
     if @address.save
       redirect_to addresses_path, notice: '新しい配送先を登録しました。'
     else
+      @addresses = current_customer.addresses
+      flash.now[:alert] = '配送先の登録に失敗しました。'
       render :index
     end
   end
@@ -23,6 +25,7 @@ class Public::AddressesController < ApplicationController
     if @address.update(address_params)
       redirect_to addresses_path, notice: '配送先の情報を更新しました。'
     else
+      flash.now[:alert] = '配送先情報の更新に失敗しました。'
       render :edit
     end
   end
