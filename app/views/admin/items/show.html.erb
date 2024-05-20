@@ -1,35 +1,41 @@
+<!--管理者用商品登録詳細ページ-->
 <div class="container my-5">
   <h4 class="row mb-5">
     <span class="heading-title">商品詳細</span>
   </h4>
-  <div class="row d-flex align-items-center ">
+  <div class="row d-flex align-items-center justify-content-center ">
+    <!--商品登録画像表示-->
     <%= image_tag @item.get_image(300,200), class:"align-top" %>
-    <div class="col-7 mb-5 ml-5">
+    <div class="col-7 m-5">
+      <!--商品名表示-->
       <div class="row d-flex">
         <label class="col-4">商品名</label>
         <div class="col-8" >
           <%= @item.name %>
         </div>
       </div>
+      <!--商品説明表示-->
       <div class="row d-flex">
         <label class="col-4">商品説明</label>
         <div class="col-8" >
           <%= @item.introduction %>
         </div>
       </div>
+      <!--商品ジャンル表示-->
       <div class="row d-flex">
         <label class="col-4">ジャンル</label>
         <div class="col-8" >
           <%= @item.genre.name %>
         </div>
       </div>
+      <!--税込価格・税抜価格表示-->
       <div class="row d-flex align-items-center">
         <label class="col-4 ">税込価格<br>(税抜価格)</label>
         <div class="col-8 " >
           <%= @item.add_tax_price.to_s(:delimited) %>（<%= number_with_delimiter(@item.price) %>）円
         </div>
       </div>
-  
+      <!--販売ステータス表示-->
       <div class="row d-flex">
         <label class="col-4">販売ステータス</label>
         <div class="col-8" >
@@ -40,12 +46,12 @@
           <% end %>
         </div>
       </div>
-      </div>
     </div>
-    <div class="row d-flex justify-content-center">
-      <div class="col-5" >
-        <%= link_to "編集する", edit_admin_item_path, class: "btn btn-success font-weight-bold px-5 py-2 " %>
-      </div>
+  </div>
+  <!--編集するボタン-->
+  <div class="row d-flex justify-content-center">
+    <div class="col-5" >
+      <%= link_to "編集する", edit_admin_item_path, class: "btn btn-success font-weight-bold px-5 py-2 " %>
     </div>
   </div>
 </div>

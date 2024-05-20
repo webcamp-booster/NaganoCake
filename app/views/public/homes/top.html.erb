@@ -25,8 +25,8 @@
         <div id="multiple-items">
         <% @items.each do |item| %>
           <div class="recommendation-items">
-            <%= link_to public_item_path(item.id) do %> <!-- 画像をクリックしたら商品詳細画面へ遷移 -->
-              <%= image_tag @item.get_image(150,100) %><br>
+            <%= link_to item_path(item.id) do %> <!-- 画像をクリックしたら商品詳細画面へ遷移 -->
+              <%= image_tag item.get_image(150,100) %><br>
             <% end %>
             <p><%= item.name %></p>
             <p>¥<%= item.add_tax_price %></p> <!-- 税込計算式/.floor => 浮動小数点数の切り捨てを行うためFloatクラスのfloorメソッドを使用 -->
