@@ -1,6 +1,6 @@
 class Public::CustomersController < ApplicationController
-  # before_action :authenticate_customer! 後ほど有効にしてください。
-  # before_action :ensure_current_customer! 
+  before_action :authenticate_customer!
+  
   def show
     @customer = current_customer
   end
@@ -14,6 +14,7 @@ class Public::CustomersController < ApplicationController
     if @current_customer.update(customer_params)
       redirect_to my_page_path, notice: '変更内容を保存しました。'
     else
+      flash.now[:alert] = '保存に失敗しました。'
       render :edit
     end
   end
@@ -23,6 +24,7 @@ class Public::CustomersController < ApplicationController
   
   def withdraw
     current_customer.update(is_active: false)
+    reset_session
     redirect_to new_customer_session_path
   end
   
@@ -32,10 +34,4 @@ class Public::CustomersController < ApplicationController
     params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :post_code, :address, :telephone_number, :email)
   end
   
-  def ensure_current_customer
-    customer = Customer.find(params[:id])
-    unless current_customer.id == customer.id
-      redirect_to my_page_path(current_customer.id)
-    end
-  end
 end

@@ -1,2 +1,85 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<div class="container my-5">
+  <h4 class="row mb-5">
+    <span class="heading-title">注文履歴詳細</span>
+  </h4>
+  
+  <div class='row d-flex mb-5'>
+    <div class='col-4 mb-5 mr-3'>
+      <div class='row'>
+        <label>注文情報</label></br>
+        <table class='table table-bordered'>
+          <tr>
+            <th class='col-3 table-secondary'>注文日</th>
+            <td class='col-4'><%= @order.created_at.strftime('%y/%m/%d') %></td>
+          </tr>
+          <tr>
+            <th class='table-secondary'>配送先</th>
+            <td>
+              〒<%= @order.post_code %></br>
+              <%= @order.address %></br>
+              <%= @order.name %>
+            </td>
+          </tr>
+          <tr>
+            <th class='table-secondary'>支払方法</th>
+            <td>
+              <% if @order.payment_method == 0 %>
+                <%= I18n.t("credit_card", scope: ["enums", "order", "payment_method"]) %>
+              <% else %>
+                <%= I18n.t("transfer", scope: ["enums", "order", "payment_method"]) %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th class='table-secondary'>ステータス</th>
+            <td>
+              <%= @order.get_status %>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class='col-4'>
+      <div class='row'>
+        <label>請求情報</label></br>
+        <table class='table table-bordered'>
+          <tr>
+            <th class='col-4 table-secondary'>商品合計</th>
+            <td class='col-4'><%= @order.get_items_total_price.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <th class='table-secondary'>配送料</th>
+            <td><%= @order.shipping_cost.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <th class='table-secondary'><strong>ご請求額</strong></th>
+            <td><%= @order.total_payment.to_s(:delimited) %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <div class='row'>
+    <label>注文内容</label></br>
+    <table class='table table-bordered'>
+      <thead>
+        <tr class='table-secondary'>
+          <th class='col-4'>商品</th>
+          <th class='col-2'>単価(税込)</th>
+          <th class='col-1'>個数</th>
+          <th class='col-1'>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.order_details.each do |order_detail| %>
+          <tr>
+            <td><%= order_detail.item.name %></td>
+            <td><%= order_detail.item.add_tax_price %></td>
+            <td><%= order_detail.amount %></td>
+            <td><%= order_detail.get_subtotal %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
