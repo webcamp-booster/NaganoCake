@@ -43,8 +43,8 @@
         </tr>
         <%  @order_details.each do |order_detail| %><!--注文した商品の履歴一覧をeach分で表示　-->
         <tr>
-          <td><%= order_detail.item.item_name %></td>
-          <td><%= order_detail.items_tax_included_price %></td>
+          <td><%= order_detail.item.name %></td>
+          <td><%= order_detail.item.add_tax_price %></td>
           <td><%= order_detail.number_of_items %></td>
           <td><%= (order_detail.get_subtotal) %> </td>
         <!-- 製作ステータス変更　更新を押すと更新-->
