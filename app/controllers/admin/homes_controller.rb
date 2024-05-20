@@ -1,5 +1,7 @@
 class Admin::HomesController < ApplicationController
-  # before_action :authenticate_admin! 後ほど有効にしないといけないかもです。
+  before_action :authenticate_admin!
   def top
+    range = Date.today.beginning_of_day..Date.today.end_of_day #　本日の0時〜23時59分までのデータを指定
+    @order = Order.where(created_at: range) # 本日の注文データのみ取ってくる
   end
 end
