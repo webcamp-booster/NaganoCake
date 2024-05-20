@@ -4,8 +4,8 @@
     <span class='heading-title'>管理者ログイン</span>
   </h4>
   
-  <!--↓ form_for(resource, as: resource_name, url: session_path(resource_name))　から変更 -->
   <%= form_with model: @admin, url: admin_session_path do |f| %>
+    <%= render "admin/shared/error_messages", resource: resource %>
     <div class="row form-group">
       <label class='col-2 ml-auto'>メールアドレス</label>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control col-6 mr-auto' %>
