@@ -14,6 +14,7 @@ class Public::CustomersController < ApplicationController
     if @current_customer.update(customer_params)
       redirect_to my_page_path, notice: '変更内容を保存しました。'
     else
+      flash.now[:alert] = '保存に失敗しました。'
       render :edit
     end
   end
