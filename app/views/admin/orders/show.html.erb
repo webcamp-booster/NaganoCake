@@ -59,9 +59,9 @@
 
 
     <div>
-     <h4>商品合計     <%= @order.total_fee %>円</h4>
-     <h4>送料　　　    <%= @order.postage %>円</h4>
-     <h4>請求金額合計　<%= (@order.total_fee+@order.postage) %>円</h4>
+     <h4>商品合計     <%= @order.total_payment.to_i - @order.shipping_cost.to_i %>円</h4>
+     <h4>送料　　　    <%= @order.shipping_cost %>円</h4>
+     <h4>請求金額合計　<%= @order.total_payment %>円</h4>
     </div>
   </div>
 </div>
