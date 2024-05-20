@@ -1,6 +1,5 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :is_matching_login_user
   
   def index
     @cart_items = current_customer.cart_items
@@ -25,6 +24,7 @@ class Public::CartItemsController < ApplicationController
     else 
           render :index
     end
+    
   end
   
   def update
@@ -53,5 +53,6 @@ private
  def cart_item_params
    params.require(:cart_item).permit(:item_id, :price, :amount)
  end
-
+ 
+ 
 end
