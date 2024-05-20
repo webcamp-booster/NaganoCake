@@ -14,6 +14,8 @@ class Public::AddressesController < ApplicationController
     if @address.save
       redirect_to addresses_path, notice: '新しい配送先を登録しました。'
     else
+      @address = Address.new
+      @addresses = current_customer.addresses
       render :index
     end
   end
