@@ -1,6 +1,5 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :is_matching_login_user
   
   def index
     @cart_items = current_customer.cart_items
