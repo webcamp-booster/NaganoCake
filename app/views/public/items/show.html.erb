@@ -1,3 +1,4 @@
+<!--Customer用商品詳細ページ-->
 <div class="container my-5">
   <div class="row d-flex align-items-center justify-content-center ">
     <%= image_tag @item.get_image(300,200), class: "align-top mr-5" %>
@@ -12,7 +13,7 @@
       <h5 class="row mb-3">
         <%= @item.introduction %>
       </h5>
-      <!--税込み・税抜価格表示-->
+      <!--税込・税抜価格表示-->
       <div class="row d-flex">
         <strong><h4><%= number_to_currency(@item.add_tax_price, format: "%u%n", unit: "￥") %></h4></strong><p>（税込）</p>
       </div>
