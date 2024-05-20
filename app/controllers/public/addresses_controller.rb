@@ -1,5 +1,6 @@
 class Public::AddressesController < ApplicationController
-  # before_action :authenticate_customer! 後ほど有効にしてください。
+  before_action :authenticate_customer!
+  
   def index
     @address = Address.new
     @addresses = current_customer.addresses
