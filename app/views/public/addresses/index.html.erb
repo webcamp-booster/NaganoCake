@@ -39,10 +39,10 @@
       <tbody>
         <% @addresses.each do |address| %>
           <tr>
-            <td><%= address.post_code %></td>
-            <td><%= address.address %></td>
-            <td><%= address.name %></td>
-            <td class='d-flex justify-content-center'>
+            <td class='align-middle'><%= address.post_code %></td>
+            <td class='align-middle'><%= address.address %></td>
+            <td class='align-middle'><%= address.name %></td>
+            <td class='d-flex justify-content-center align-middle'>
               <%= link_to '編集する', edit_address_path(address.id), class: 'btn btn-success' %>
               <%= link_to '削除する', address_path(address.id), method: :delete, class: 'btn btn-danger ml-2' %>
             </td>
