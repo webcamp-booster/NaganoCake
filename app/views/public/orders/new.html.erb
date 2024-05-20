@@ -1,8 +1,6 @@
 <div class="container">
     <div class="row mb-3">
-        <div class="col-10 offset-2">
-            <h4 class="bg-light">注文情報入力</h4>
-        </div>
+    <h4 class="bg-light">注文情報入力</h4>
     </div>
     <div class="row">
         <div class="col">
@@ -28,7 +26,7 @@
                     <%= f.radio_button :address_option, 1 %>
                     <%= f.label :address_option, "登録済住所から選択" ,{value: 0}%>
                 <br>
-                    <%= f.collection_select(:address_id, @addresses, :id ,:address_display, prompt: "登録してある配送先住所から選択") %>
+                    <%= f.collection_select :address_id, @addresses, :id ,:address_display, { selected: "", disabled: "",prompt: "登録してある配送先住所から選択" }, {required: true} %>
                 <br>
                     <%= f.radio_button :address_option, 2 %>
                     <%= f.label :address_option, "新しいお届け先" ,{value: 0}%>
@@ -49,7 +47,7 @@
                     <div class="row justify-content-center py-5">
                         <%= f.submit "確認画面へ進む" , class:"btn btn-primary" %>
                     </div>
-                <% end %>
+            <% end %>
         </div>
     </div>
 

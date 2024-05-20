@@ -18,6 +18,7 @@ before_action :authenticate_customer!
       @order.post_code = selected.post_code
       @order.address = selected.address
       @order.name = selected.name
+      
 
     elsif params[:order][:address_option] == "2"
       @order.post_code = params[:order][:post_code]
