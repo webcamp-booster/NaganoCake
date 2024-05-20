@@ -15,7 +15,7 @@ def show
 	# 注文内容の情報を取得しています！
 	@order = Order.find(params[:id])
   # 注文内容の商品を取得しています！
-	@order_details = @order.order_idetails
+	@order_details = @order.order_details
 end
 
 def update
