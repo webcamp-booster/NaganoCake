@@ -18,7 +18,7 @@
         <%= f.radio_button :address_option, 0, checked: "checked" %>
         <%= f.label :address_option, "ご自身の住所",{value: 0} %>
         <br>
-        〒<%= current_customer.post_code %>
+        〒<%= current_customer.post_code.insert(3, '-') %>
           <%= current_customer.address %><br>
           <%= current_customer.last_name %>
           <%= current_customer.first_name %>
@@ -26,7 +26,7 @@
           <%= f.radio_button :address_option, 1 %>
           <%= f.label :address_option, "登録済住所から選択" ,{value: 0}%>
           <br>
-          <%= f.collection_select :address_id, @addresses, :id ,:address_display, { selected: "", disabled: "",prompt: "登録してある配送先住所から選択" }, {required: true} %>
+          <%= f.collection_select :address_id, @addresses, :id ,:address_display, { disabled: "", prompt: "登録してある配送先住所から選択" }, {required: true} %>
           <br>
           <%= f.radio_button :address_option, 2 %>
           <%= f.label :address_option, "新しいお届け先" ,{value: 0}%>

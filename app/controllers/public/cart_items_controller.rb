@@ -22,7 +22,8 @@ class Public::CartItemsController < ApplicationController
           render :index
       #保存できなかった場合
     else
-          render :index
+      @cart_items = current_customer.cart_items
+      render :index
     end
   end
 

@@ -33,7 +33,7 @@ class Public::OrdersController < ApplicationController
 
     @cart_items = current_customer.cart_items.all
     @order.customer_id = current_customer.id
-    @order.shipping_cost = 800
+    @order.shipping_cost = @order.get_shipping_cost
 
   end
 
