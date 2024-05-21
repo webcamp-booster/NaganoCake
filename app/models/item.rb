@@ -4,12 +4,13 @@ class Item < ApplicationRecord
   belongs_to :genre
 
   has_one_attached :image
-  
+
   validates :name, presence: true
   validates :image, presence: true
   validates :introduction, presence: true
   validates :price, presence: true
-  
+  validates :is_active, inclusion: { in: [true,false] }
+
   TAX_RATE = 1.1
 
 # 税込価格の表記

@@ -3,19 +3,19 @@
     <span class="heading-title">注文履歴詳細</span>
   </h4>
   
-  <div class='row d-flex mb-5'>
+  <div class='row d-flex mb-3'>
     <div class='col-4 mb-5 mr-3'>
       <div class='row'>
         <label>注文情報</label></br>
         <table class='table table-bordered'>
           <tr>
             <th class='col-3 table-secondary'>注文日</th>
-            <td class='col-4'><%= @order.created_at.strftime('%y/%m/%d') %></td>
+            <td class='col-4'><%= @order.created_at.strftime('20%y/%m/%d') %></td>
           </tr>
           <tr>
             <th class='table-secondary'>配送先</th>
             <td>
-              〒<%= @order.post_code %></br>
+              〒<%= @order.post_code.insert(3,'-') %></br>
               <%= @order.address %></br>
               <%= @order.name %>
             </td>
@@ -33,7 +33,7 @@
           <tr>
             <th class='table-secondary'>ステータス</th>
             <td>
-              <%= @order.get_status %>
+              <%= @order.status_i18n %>
             </td>
           </tr>
         </table>
@@ -75,9 +75,9 @@
         <% @order.order_details.each do |order_detail| %>
           <tr>
             <td><%= order_detail.item.name %></td>
-            <td><%= order_detail.item.add_tax_price %></td>
+            <td><%= order_detail.item.add_tax_price.to_s(:delimited) %></td>
             <td><%= order_detail.amount %></td>
-            <td><%= order_detail.get_subtotal %></td>
+            <td><%= order_detail.get_subtotal.to_s(:delimited) %></td>
           </tr>
         <% end %>
       </tbody>
