@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   # 管理者用
   namespace :admin do
     root to: 'homes#top'
+    get 'customer_orders' => 'homes#customer_orders', as: 'customer_orders'
 
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
 

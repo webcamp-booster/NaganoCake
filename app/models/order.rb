@@ -14,4 +14,12 @@ class Order < ApplicationRecord
     return items_total_price
   end
 
+  def get_total_amount
+    total_amount = 0
+    order_details.each do |order_detail|
+      total_amount += order_detail.amount
+    end
+    total_amount
+  end
+
 end
