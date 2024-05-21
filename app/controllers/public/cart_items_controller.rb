@@ -12,7 +12,7 @@ class Public::CartItemsController < ApplicationController
     if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
       cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
       # 追加した「params[:cart_item][:item_id]」を加える、to_iで数字として扱う
-      cart_item.amount += params[:cart_item][:quantity].to_i
+      cart_item.amount += params[:cart_item][:amount].to_i
       # カート商品を保存後はカートアイテム一覧へページ遷移
       cart_item.save
       redirect_to cart_items_path
@@ -52,5 +52,7 @@ private
  def cart_item_params
    params.require(:cart_item).permit(:item_id, :price, :amount)
  end
+ 
+ 
 
 end
