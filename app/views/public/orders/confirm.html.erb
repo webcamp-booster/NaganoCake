@@ -2,7 +2,7 @@
   <h4>注文情報確認</h4>
   <div class = "row">
     <table class = "table table-bordered col-7">
-      <tr>
+      <tr class='table-secondary'>
         <td>商品名</td>
         <td>単価(税込)</td>
         <td>数量</td>
@@ -11,16 +11,16 @@
       <% @cart_items.each do |cart_item| %>
       <tr>
         <td>
-          <%= image_tag cart_item.item.get_image(300,200) %>
+          <%= image_tag cart_item.item.get_image(60,40) %>
           <strong><%= cart_item.item.name %></strong>
         </td>
-        <td>
+        <td  class="align-middle">
           <%= cart_item.item.add_tax_price.to_s(:delimited) %>
         </td>
-        <td>
+        <td class="align-middle">
           <%= cart_item.amount %>
         </td>
-        <td>
+        <td class="align-middle">
           <%= cart_item.subtotal.to_s(:delimited) %>
         </td>
       </tr>
@@ -30,15 +30,15 @@
 
     <table class = "table table-bordered offset-1 col-4">
       <tr>
-        <th>送料</th>
+        <th class="table-secondary">送料</th>
         <% @order.shipping_cost %>
         <td><%= @order.shipping_cost %></td>
       </tr>
       <tr>
-        <th>商品合計</th>
+        <th class="table-secondary">商品合計</th>
         <td><%= @total %></td>
       <tr>
-        <th>請求金額</th>
+        <th class="table-secondary">請求金額</th>
         <% @order.total_payment = @order.shipping_cost.to_i + @total.to_i %>
         <td><%= @order.total_payment.to_s(:delimited) %></td>
       </tr>
