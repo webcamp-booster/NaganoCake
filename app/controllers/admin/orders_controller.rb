@@ -24,7 +24,7 @@ def update
 	@order.update(order_params) #注文ステータスの更新
 
 
- if @order.status == 1 #注文ステータスが入金確認なら下の事をする
+ if @order.status == 'comfirmed_payment' #注文ステータスが入金確認なら下の事をする
      @order_details.update_all(making_status: 1) #製作ステータスを「製作待ちに」　更新
  end
 		 redirect_to  admin_order_path(@order) #注文詳細に遷移
