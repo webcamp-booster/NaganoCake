@@ -22,7 +22,7 @@
             <tr>
               <td class='text-align align-middle'><%= order.created_at.strftime('%y/%m/%d') %></td>
               <td class='align-middle'>
-                〒<%= order.post_code %></br>
+                〒<%= order.post_code.insert(3,'-') %></br>
                 <%= order.address %></br>
                 <%= order.name %>
               <td class='align-middle'>

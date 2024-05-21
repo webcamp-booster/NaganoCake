@@ -11,7 +11,7 @@
       </tr>
       <tr>
         <th>配送先</th>
-        <td>〒<%= @order.post_code %> <%= @order.address %><br><%= @order.name %></td>
+        <td>〒<%= @order.post_code.insert(3, '-') %> <%= @order.address %><br><%= @order.name %></td>
       </tr>
       <tr>
         <th>支払い方法</th>
@@ -44,9 +44,9 @@
         <%  @order_details.each do |order_detail| %><!--注文した商品の履歴一覧をeach分で表示　-->
         <tr>
           <td><%= order_detail.item.name %></td>
-          <td><%= order_detail.item.add_tax_price %></td>
+          <td><%= order_detail.item.add_tax_price.to_s(:delimited) %></td>
           <td><%= order_detail.amount %></td>
-          <td><%= (order_detail.get_subtotal) %> </td>
+          <td><%= order_detail.get_subtotal.to_s(:delimited) %> </td>
         <!-- 製作ステータス変更　更新を押すと更新-->
           <%= form_for order_detail,url: admin_order_detail_path(order_detail) do |f| %>
           <td><%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]} %></td><!--ステータス選択 -->
@@ -59,9 +59,9 @@
 
 
     <div>
-     <h4>商品合計     <%= @order.total_payment.to_i - @order.shipping_cost.to_i %>円</h4>
-     <h4>送料　　　    <%= @order.shipping_cost %>円</h4>
-     <h4>請求金額合計　<%= @order.total_payment %>円</h4>
+     <h4>商品合計     <%= @order.get_items_total_price.to_s(:delimited) %>円</h4>
+     <h4>送料　　　    <%= @order.shipping_cost.to_s(:delimited) %>円</h4>
+     <h4>請求金額合計　<%= @order.total_payment.to_s(:delimited) %>円</h4>
     </div>
   </div>
 </div>
