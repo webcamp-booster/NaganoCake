@@ -6,37 +6,33 @@
       <%= render "public/shared/sidebar", genres: @genres %>
     </div>
     <div class="col-sx-12 col-lg-5 mt-5 ">
-      <div class="d-flex justify-content-center">
+      <div class="text-center ">
         <%= image_tag @item.get_image(300,200) %>
       </div>
     </div>
     <div class="col-sx-12 col-md-12 col-lg-4 mt-5 ">
       <!--商品名-->
-      <h4 class="row my-3">
+      <h4 class="my-3">
         <strong>
           <%= @item.name %>
         </strong>
       </h4>
       <!--紹介文-->
-      <h5 class="row mb-3">
+      <h5 class="mb-3">
         <%= @item.introduction %>
       </h5>
       <!--税込・税抜価格表示-->
-      <div class="row">
+      <div>
         <strong><h4><%= number_to_currency(@item.add_tax_price, format: "%u%n", unit: "￥") %></h4></strong><p>（税込）</p>
       </div>
       <!--サインインしてる場合に表示-->
       <% if customer_signed_in? %>
-      <!--カートに入れるボタンの作成-->
-      　<!--商品ステータスがtrue(販売中)の場合-->
-        <% if @item.is_active == true %>
-          <%= form_with(model: @cart_item, url: cart_items_path, method: :post, local: true) do |f| %>
-            <div class="row d-flex">
-              <div class="mr-3"><%= f.select :amount, *[1..10], {prompt: "個数選択"},{required: true} %></div>
-              <div><%= f.hidden_field :item_id, :value =>@item.id %></div>
-              <div><%= f.submit "カートに入れる", class: "btn btn-success mt-3" %></div>
-            </div>
-          <% end %>
+        <%= form_with(model: @cart_item, url: cart_items_path, method: :post, local: true) do |f| %>
+          <div class="d-flex">
+            <div class="mr-3"><%= f.select :amount, *[1..10], {prompt: "個数選択"},{required: true} %></div>
+            <%= f.hidden_field :item_id, :value =>@item.id %>
+            <%= f.submit "カートに入れる", class: "btn btn-success mt-3" %>
+          </div>
         <% end %>
       <% end %>
     </div>
