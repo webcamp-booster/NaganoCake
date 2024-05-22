@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
     post '/orders/confirm' => 'public/orders#confirm', as: 'confirm'
     get '/orders/thanks' => 'public/orders#thanks', as: 'thanks'
+    get '/search' => 'public/items#search', as: 'search'
 
     scope module: :public do
       resources :items, only: [:index, :show]
