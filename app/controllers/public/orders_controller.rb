@@ -6,7 +6,6 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
     @addresses = current_customer.addresses.all
   end
-
   
   def confirm #注文情報入力確認画面
     @order = Order.new(order_params)
