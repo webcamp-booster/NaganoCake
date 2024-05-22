@@ -1,11 +1,11 @@
 <!--Customer用商品登録一覧ページ-->
 
 <div class="container">
-  <div class="row text-align-bottom mt-5 mb-3">
-    <h2 class="item_title"><strong>商品一覧</strong></h2>
-    <h5 class="item_count">（全<%= @active_items_count %>件）</h5>
+  <div class="row mt-5 mb-3">
+    <div class="col-3"></div>
+    <h2><strong>商品一覧</strong></h2>
+    <h5>（全<%= @active_items_count %>件）</h5>
   </div>
-  
   <div class="row d-flex">
   <div class="col-sx-12 col-lg-3">
       <!-- ジャンル検索サイドバー / パーシャル表示 -->
@@ -15,26 +15,24 @@
     <div class="row">
       <!--商品一覧を表示・コントローラで販売ステータスtrueのみを指定-->
       <% @items.each do |item| %>
-        <% if item.is_active %>
-          <!--商品画像・商品名に詳細ページへリンクをつける-->
-          <div class="mx-1 mb-3">
-            <div>
-              <%= link_to item_path(item) do %>
-                <%= image_tag item.get_image(200, 120) %>
-              <% end %>
-            </div>
-            <div class="mb-3">
-              <%= link_to item_path(item) do %>
-                <strong><%= item.name %></strong>
-              <% end %>
-            </div>
-            <!--税抜金額の表示-->
-            <div>
-              <strong><%= number_to_currency(item.price, format: "%u%n", unit: "￥" ) %></strong>
-            </div>
+        <!--商品画像・商品名に詳細ページへリンクをつける-->
+        <div class="mx-1 mb-3">
+          <div>
+            <%= link_to item_path(item.id) do %>
+              <%= image_tag item.get_image(200, 120) %>
+            <% end %>
           </div>
+          <div class="mb-3">
+            <%= link_to item_path(item.id) do %>
+              <strong><%= item.name %></strong>
+            <% end %>
+          </div>
+          <!--税抜金額の表示-->
+          <div>
+            <strong><%= number_to_currency(item.price, format: "%u%n", unit: "￥" ) %></strong>
+          </div>
+        </div>
       <% end %>
-    <% end %>
     </div>
   </div>
   </div>

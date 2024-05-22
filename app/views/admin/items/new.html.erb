@@ -27,7 +27,7 @@
     <div class="row d-flex justify-content-center">
         <%= f.label :genre, "ジャンル", class: "col-3 mb-4" %>
       <div class="col-5 mb-4">
-        <%= f.select :genre_id,options_for_select(Genre.all.map{ |genre| [genre.name, genre.id] }), include_blank: "--選択してください--" %>
+        <%= f.select :genre_id,options_from_collection_for_select(Genre.all, :id, :name), include_blank: "--選択してください--" %>
       </div>
     </div>
     <!--税抜価格入力-->
