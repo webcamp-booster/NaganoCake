@@ -20,7 +20,7 @@ class Public::OrdersController < ApplicationController
       @order.post_code = selected.post_code
       @order.address = selected.address
       @order.name = selected.name
-      
+
 
     elsif params[:order][:address_option] == "2"
       @order.post_code = params[:order][:post_code]
@@ -71,7 +71,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:payment_method, :name, :address, :post_code, :shipping_cost, :total_payment, :status)
+    params.require(:order).permit(:payment_method, :name, :address, :post_code, :shipping_cost, :total_payment, :status,:customer_id)
   end
 
 end
