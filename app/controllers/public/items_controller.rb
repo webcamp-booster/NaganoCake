@@ -18,7 +18,12 @@ class Public::ItemsController < ApplicationController
     @genres = Genre.all
   end
 
-
+  def search
+    @items = Item.where('name LIKE?', '%' + params[:content] + '%').where(is_active: true).page(params[:page]).per(8)
+    @active_items_count = Item.where('name LIKE?', '%' + params[:content] + '%').where(is_active: true).count
+    @genres = Genre.all
+    render :index
+  end
 
   private
     def item_params
