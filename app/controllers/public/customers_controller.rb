@@ -1,5 +1,5 @@
 class Public::CustomersController < ApplicationController
- before_action :authenticate_customer! 
+ before_action :authenticate_customer!
   def show
     @customer = current_customer
   end
@@ -24,7 +24,7 @@ class Public::CustomersController < ApplicationController
   def withdraw
     current_customer.update(is_active: false)
     reset_session
-    redirect_to new_customer_session_path
+    redirect_to root_path
   end
 
   private
