@@ -10,24 +10,38 @@ class Public::OrdersController < ApplicationController
   def confirm #注文情報入力確認画面
     @order = Order.new(order_params)
     @total = 0
-    if params[:order][:address_option] == "0"
+      
+    if params[:order][:address_option] == '0'
       @order.post_code = current_customer.post_code
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
 
-    elsif params[:order][:address_option] == "1"
-      selected = Address.find(params[:order][:address_id])
-      @order.post_code = selected.post_code
-      @order.address = selected.address
-      @order.name = selected.name
-      
+    elsif params[:order][:address_option] == '1'
+      if params[:address_id].nil?
+        @addresses = current_customer.addresses
+        flash.now[:alert] = '配送先を選択してください。'
+        render :new
+      else
+        selected = Address.find(params[:address_id])
+        @order.post_code = selected.post_code
+        @order.address = selected.address
+        @order.name = selected.name
+      end
 
-    elsif params[:order][:address_option] == "2"
-      @order.post_code = params[:order][:post_code]
-      @order.address = params[:order][:address]
-      @order.name = params[:order][:name]
+    elsif params[:order][:address_option] == '2'
+      if params[:post_code].nil? || params[:address].nil? || params[:name].nil?
+        @addresses = current_customer.addresses
+        flash.now[:alert] = '住所を入力してください。'
+        render :new
+      else
+        @order.post_code = params[:post_code]
+        @order.address = params[:address]
+        @order.name = params[:name]
+      end
 
     else
+      @addresses = current_customer.addresses
+      flash.now[:alert] = 'お届け先を選択してください。'
       render 'new'
     end
 
