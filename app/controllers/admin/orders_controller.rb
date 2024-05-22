@@ -24,19 +24,11 @@ def update
 	@order.update(order_params) #注文ステータスの更新
 
 
- if @order.status == 'comfirmed_payment' #注文ステータスが入金確認なら下の事をする
+  if @order.status == 'comfirmed_payment' #注文ステータスが入金確認なら下の事をする
      @order_details.update_all(making_status: 1) #製作ステータスを「製作待ちに」　更新
- end
+  end
 		 redirect_to  admin_order_path(@order) #注文詳細に遷移
 end
-  # こっちでも可能
-  # emunの変換前取得している
-	# if @order.read_attribute_before_type_cast(:order_status) == 1
-	# 	@order_details.each do |order_detail|
-	# 	order_detail.update(making_status: 1)
-	# 	end
- #  end
-
 
 private
 
