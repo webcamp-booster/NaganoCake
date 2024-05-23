@@ -17,13 +17,12 @@
           </p>
         <% end %>
       </div>
-      <!-- 新着商品表示 -->
-  		<div class="row mb-3">
-  		  <h3 class="col-12">
-  		    <strong>新着商品</strong>
-  		  </h3>
-  		</div>
-      <div class="col-md-12 col-lg-12 px-0">
+      <!-- オススメ商品表示 -->
+      <br>
+  		<h4 class="row mb-5">
+  		  <i class="fas fa-crown"></i> オススメ商品 <i class="fas fa-crown"></i>
+  		</h4>
+      <div class="col-md-12 col-lg-12">
         <div class="row">
           <% @items.each do |item| %>
             <div class="col-3">
@@ -31,7 +30,7 @@
                 <%= image_tag item.get_image(150,100) %><br>
               <% end %>
               <%= link_to item_path(item.id) do %>
-                <p class="my-3"><%= item.name %></p>
+                <p class="item_name"><%= item.name %></p>
               <% end %>
               <p>¥<%= item.add_tax_price.to_s(:delimited) %></p> <!-- 税込計算式/.floor => 浮動小数点数の切り捨てを行うためFloatクラスのfloorメソッドを使用 -->
             </div>
@@ -41,9 +40,9 @@
   	</div>
   </div>
   <div class="row">
-  	  <div class="col-md-9 col-lg-10"></div>
-  	  <div class="col-md-3 col-lg-2">
-  	    <%= link_to "全ての商品を見る＞", items_path %>
+  	  <div class="col-lg-10"></div>
+  	  <div class="col-lg-2">
+  	    <%= link_to "もっと見る＞", items_path %>
   	  </div>
     </div>
 </div>
