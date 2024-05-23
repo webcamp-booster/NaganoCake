@@ -22,8 +22,9 @@
         <%= @item.introduction %>
       </h5>
       <!--税込・税抜価格表示-->
-      <div>
-        <strong><h4><%= number_to_currency(@item.add_tax_price, format: "%u%n", unit: "￥") %></h4></strong><p>（税込）</p>
+      <div class="row d-flex pl-3">
+        <h4>¥<%=@item.add_tax_price.to_s(:delimited) %></h4>
+        <p>（税込）</p>
       </div>
       <!--サインインしてる場合に表示-->
       <% if customer_signed_in? %>
