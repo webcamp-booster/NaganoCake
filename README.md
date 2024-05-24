@@ -5,7 +5,7 @@
 長野県にある小さな洋菓子店「ながのCAKE」の商品を通販するためのECサイト開発。
 
 ### 動作デモ
-後ほど掲載予定。
+https://github.com/webcamp-booster/NaganoCake/assets/164776044/a268059f-7e75-4d36-b49c-8b02ae0ef79e
 
 ### 設計書
 ER図: 
