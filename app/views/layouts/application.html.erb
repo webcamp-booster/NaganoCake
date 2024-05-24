@@ -6,11 +6,26 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://kit.fontawesome.com/945e2890b0.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
   </head>
 
   <body>
+    <!-- ヘッダー -->
+    <div>
+      <%= render "layouts/header" %>
+    </div>
+
+    <!-- Body部分 -->
+    <p class='text-success'><%= flash[:notice] %></p>
+    <p class='text-danger'><%= flash[:alert] %></p>
     <%= yield %>
+
+    <!-- Footer -->
+    <%= render "layouts/footer" %>
   </body>
 </html>
+
+

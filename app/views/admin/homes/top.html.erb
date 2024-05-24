@@ -1,0 +1,32 @@
+<div class="container my-5">
+  <h4 class='row mb-5'>
+    <span class='heading-title'>注文履歴一覧</span>
+  </h4>
+	<table class="table table-hover">
+	  <tr class="active">
+      <th>購入日時</th>
+      <th>購入者</th>
+      <th>注文個数</th>
+      <th>注文ステータス</th>
+    </tr>
+    <% @orders.each do |order| %>
+    <tr>
+      <td>
+        <%= link_to admin_order_path(order) do %>
+          <%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to admin_customer_orders_path(id: order.customer_id) do %>
+          <%= order.customer.last_name %><%= order.customer.first_name %>
+        <% end %>
+      </td>
+      <td><%= order.get_total_amount %></td>
+      <td><%= order.status_i18n %></td>
+    </tr>
+    <% end %>
+  </table>
+  <div class="row justify-content-center mt-5">
+    <%= paginate @orders, theme: 'bootstrap-5' %>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="container my-5">
+  <div class="row mb-3">
+    <h4 class="col-6">
+      <span class="heading-title">商品一覧</span>
+    </h4>
+    <!--新規登録のリンクを右に表示-->
+    <h1 class="col-6 text-right">
+      <%= link_to new_admin_item_path, class: "text-right" do %>
+        <i class="fa-sharp fa-solid fa-circle-plus"></i>
+      <% end %>
+    </h1>
+  </div>
+  <!--商品登録一覧テーブル-->
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <table class="table table-hover table-inverse table-borderless border-bottom">
+        <thead class="table-secondary">
+          <!--テーブルヘッダー-->
+          <tr>
+            <th class="col-1">商品ID</th>
+            <th class="col-4">商品名</th>
+            <th class="col-2">税抜価格</th>
+            <th class="col-3">ジャンル</th>
+            <th class="col-2">ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <!--商品ID-->
+              <td><%= item.id %></td>
+              <!--商品名 詳細ページへリンクあり-->
+              <td>
+                <%= link_to admin_item_path(item) do  %>
+                  <%= item.name %>
+                <% end %>
+              </td>
+              <!--税抜金額-->
+              <td><%= number_with_delimiter(item.price) %></td>
+              <!--ジャンル名-->
+              <td><%= item.genre.name %></td>
+              <!--販売ステータス true→販売中、false→販売停止中-->
+              <td>
+                <% if item.is_active %>
+                  <span class="text-success font-weight-bold">販売中</span>
+                <% else %>
+                  <span class="text-secondary font-weight-bold"> 販売停止中</span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--ページネーション-->
+  <div class="row justify-content-center">  
+   <%= paginate @items, theme: 'bootstrap-5' %>
+  </div>
+</div>  

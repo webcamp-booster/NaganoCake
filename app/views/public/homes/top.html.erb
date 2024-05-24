@@ -1,0 +1,49 @@
+<div class="container ">
+  <div class="row m-5">
+    <div class="col-sx-12 col-md-12 col-lg-3">
+      <!-- ジャンル検索サイドバー / パーシャル表示 -->
+      <%= render "public/shared/sidebar", genres: @genres %>
+    </div>
+    <div class="col-sx-12 col-lg-9">
+      <!-- 画像背景 -->
+      <div class="bg-img d-flex justify-content-center align-items-center mb-5">
+        <!--会員以外にのみ表示-->
+        <% if !customer_signed_in? %>
+          <p class="bg-white p-3 rounded" style="opacity: 90%;">
+            ようこそ、NaganoCakeへ！<br>
+            このサイトは、ケーキ販売のECサイトになります。<br>
+            会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。
+          </p>
+        <% end %>
+      </div>
+      <!-- 新着商品表示 -->
+  		<div class="row mb-3">
+  		  <h3 class="col-12">
+  		    <strong>新着商品</strong>
+  		  </h3>
+  		</div>
+      <div class="col-md-12 col-lg-12 px-0">
+        <div class="row">
+          <% @items.each do |item| %>
+            <div class="col-3">
+              <%= link_to item_path(item.id) do %> <!-- 画像をクリックしたら商品詳細画面へ遷移 -->
+                <%= image_tag item.get_image(150,100) %><br>
+              <% end %>
+              <%= link_to item_path(item.id) do %>
+                <p class="item_name my-3"><%= item.name %></p>
+              <% end %>
+              <p>¥<%= item.add_tax_price.to_s(:delimited) %></p> <!-- 税込計算式/.floor => 浮動小数点数の切り捨てを行うためFloatクラスのfloorメソッドを使用 -->
+            </div>
+          <% end %>
+        </div>
+      </div>
+  	</div>
+  </div>
+  <div class="row">
+  	  <div class="col-md-9 col-lg-10"></div>
+  	  <div class="col-md-3 col-lg-2">
+  	    <%= link_to "全ての商品を見る＞", items_path %>
+  	  </div>
+    </div>
+</div>

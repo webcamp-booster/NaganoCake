@@ -1,0 +1,61 @@
+<!--管理者用商品登録詳細ページ-->
+<div class="container my-5">
+  <h4 class="row mb-5">
+    <span class="heading-title">商品詳細</span>
+  </h4>
+  <div class="row d-flex align-items-center justify-content-center ">
+    <!--商品登録画像表示-->
+    <div class="col-md-12 col-lg-4 text-center pb-3">
+    <%= image_tag @item.get_image(300,200) %>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6 m-4">
+      <!--商品名表示-->
+      <div class="row mb-2">
+        <label class="col-md-5 col-lg-4">商品名</label>
+        <div class="col-md-7 col-lg-8" >
+          <%= @item.name %>
+        </div>
+      </div>
+      <!--商品説明表示-->
+      <div class="row mb-2">
+        <label class="col-md-5 col-lg-4">商品説明</label>
+        <div class="col-md-7 col-lg-8" >
+          <%= @item.introduction %>
+        </div>
+      </div>
+      <!--商品ジャンル表示-->
+      <div class="row mb-2">
+        <label class="col-md-5 col-lg-4">ジャンル</label>
+        <div class="col-md-7 col-lg-8" >
+          <%= @item.genre.name %>
+        </div>
+      </div>
+      <!--税込価格・税抜価格表示-->
+      <div class="row mb-2 align-items-center">
+        <label class="col-md-5 col-lg-4 ">税込価格<br>(税抜価格)</label>
+        <div class="col-md-7 col-lg-8 " >
+          <%= @item.add_tax_price.to_s(:delimited) %>（<%= @item.price.to_s(:delimited) %>）円
+        </div>
+      </div>
+      <!--販売ステータス表示-->
+      <div class="row">
+        <label class="col-md-5 col-lg-4">販売ステータス</label>
+        <div class="col-md-7 col-lg-8" >
+          <% if @item.is_active %>
+            <span class="text-success font-weight-bold">販売中</span>
+          <% else %>
+            <span class="text-secondary font-weight-bold"> 販売停止中</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--編集するボタン-->
+  <div class="row mb-4">
+    <div class="col-md-4 col-lg-5"></div>
+    <div class="col-md-5 col-lg-3">
+      <%= link_to "編集する", edit_admin_item_path, class: "btn btn-success font-weight-bold px-5 py-2 " %>
+    </div>
+  </div>
+  
+</div>

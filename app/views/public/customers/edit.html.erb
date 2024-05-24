@@ -1,0 +1,49 @@
+<div class='container my-5'>
+  
+  <h4 class='row mb-5'>
+    <span class='heading-title'>会員情報編集</span>
+  </h4>
+  
+  <%= render 'layouts/errors', obj: @customer %>
+  
+  <%= form_with model: @customer do |f| %>
+    <div class='row form-group'>
+      <label class='col-2'>氏名</label>
+      <%= f.text_field :last_name, class: 'form-control col-2' %>
+      <%= f.text_field :first_name, class: 'form-control col-2 ml-1' %>
+    </div>
+    
+    <div class='row form-group'>
+      <label class='col-2'>フリガナ</label>
+      <%= f.text_field :last_name_kana, class: 'form-control col-2' %>
+      <%= f.text_field :first_name_kana, class: 'form-control col-2 ml-1' %>
+    </div>
+    
+    <div class='row form-group'>
+      <label class='col-2'>郵便番号</label>
+      <%= f.text_field :post_code, class: 'form-control col-2' %>
+    </div>
+    
+    <div class='row form-group'>
+      <label class='col-2'>住所</label>
+      <%= f.text_field :address, class: 'form-control col-5' %>
+    </div>
+    
+    <div class='row form-group'>
+      <label class='col-2'>電話番号</label>
+      <%= f.text_field :telephone_number, class: 'form-control col-2' %>
+    </div>
+    
+    <div class='row form-group'>
+      <label class='col-2'>メールアドレス</label>
+      <%= f.email_field :email, class: 'form-control col-2' %>
+    </div>
+    
+    <div class='row form-group'>
+      <%= f.submit '編集内容を保存', class: 'btn btn-success' %>
+      <%= link_to '退会する', unsubscribe_path(@customer.id), class: 'btn btn-danger ml-3' %>
+    </div>
+  <% end %>
+  
+</div>
+

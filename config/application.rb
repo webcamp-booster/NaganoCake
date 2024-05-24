@@ -15,8 +15,16 @@ module Naganocake
     #
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
+    config.i18n.default_locale = :ja
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+     config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
+     config.time_zone = 'Tokyo'
+     
   end
+
+
+
+
 end
